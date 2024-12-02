@@ -40,9 +40,33 @@ def compute_diffs(list_A, list_B):
     return res
 
 
+def make_counter_dict(list_B):
     
+    res = dict()
+    
+    for num in list_B:
+        if num not in res:
+            res[num] = 0
+        res[num] += 1
+        
+    return res
 
 
+def compute_score(list_A, list_B):
+    
+    res = 0
+    
+    # computing occurrencies in list_B 
+    list_B_counter = make_counter_dict(list_B)
+    
+    # going through the whole list A
+    for num in list_A:
+        
+        # updating the score if current number appears in list B
+        if num in list_B_counter:
+            res += num * list_B_counter[num]
+
+    return res
 
 
 if __name__ == '__main__':
@@ -65,4 +89,9 @@ if __name__ == '__main__':
     print(result)
     print()
     
+    # Computing result for part 2
+    print("Part 2:")
+    result = compute_score(list_A, list_B)
+    print(result)
+    print()
 
